@@ -23,4 +23,4 @@ echo -e '\e[35mone more line \e[0m'
 echo -e '\e[36mone more line \e[0m'
 
 echo -e "line1\n\nline2"
-echo -e "word1\t\word2"
+echo -e "word1\t\tword2"
