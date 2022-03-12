@@ -9,11 +9,12 @@ echo $b training
 
 Date=2022-03-10
 echo Todays date is $Date
-echo Todays date is $ Date +%F
+Date=$(date +%F)
+echo Todays date is $Date
 
 x=10
 y=20
-Add=(($x+$y))
-echo add = $Add
+Add=$(($x+$y))
+echo Add = $Add
 
 
