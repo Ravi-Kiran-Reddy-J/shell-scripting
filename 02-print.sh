@@ -21,3 +21,6 @@ echo -e '\e[33mone more line \e[0m'
 echo -e '\e[34mone more line \e[0m'
 echo -e '\e[35mone more line \e[0m'
 echo -e '\e[36mone more line \e[0m'
+
+echo -e "line1\n\nline2"
+ecjo -e "word1\t\word2"
