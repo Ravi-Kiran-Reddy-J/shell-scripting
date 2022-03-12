@@ -6,5 +6,6 @@ echo ${a}times
 echo $b training
 
 # {} are needed if a variable is combined with words without spaces
-# Date=2022-03-10
+
+Date=2022-03-10
 echo Todays date is $Date
