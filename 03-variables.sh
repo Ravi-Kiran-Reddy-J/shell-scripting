@@ -7,14 +7,15 @@ echo $b training
 
 # {} are needed if a variable is combined with words without spaces
 
-Date=2022-03-10
-echo Todays date is $Date
-Date=$(date +%F)
-echo Todays date is $Date
+DATE=2022-03-10
+echo Todays date is $DATE
+
+DATE=$(date +%F)
+echo Todays date is $DATE
 
 x=10
 y=20
-Add=$(($x+$y))
-echo Add = $Add
+ADD=$(($x+$y))
+echo Add = $ADD
 
 
