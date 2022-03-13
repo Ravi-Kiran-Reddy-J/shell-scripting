@@ -19,3 +19,8 @@ ADD=$(($x+$y))
 echo Add = $ADD
 
 
+# Arrays
+C=(10, 20 small large)
+echo First value of Array = ${c[0]}
+echo Second value of Array = ${c[1]}
+echo All value of Array = ${c[*]}
