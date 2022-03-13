@@ -1,1 +1,1 @@
-echo cart component
+#!/bin/bash
