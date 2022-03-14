@@ -11,6 +11,15 @@
 # command
 # fi
 
+# If Else
+# if [expression ]; then
+# commands
+# else
+# commands
+# fi
+
+# Expressions are important
+
  if [ 1 -eq 1 ]
  then
    echo Hello
