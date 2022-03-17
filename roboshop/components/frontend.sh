@@ -1,20 +1,35 @@
 #!/bin/bash
 
-echo -e "\e[36m Installing Nginx \e[0m"
-yum install nginx -y
+source components/common.sh
 
-echo -e "\e[36m Downloading Nginx Content\e[0m"
-curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+Print "Installing Nginx"
+yum install nginx -y &>>$LOG_FILE
+StatCheck $?
 
-echo -e "\e[36m Cleaning old Nginx and extract new download archive\e[0m"
-rm -rf /usr/share/nginx/html/*
-cd /usr/share/nginx/html
-unzip /tmp/frontend.zip
-mv frontend-main/* .
-mv static/* .
-rm -rf frontend-main README.md
-mv localhost.conf /etc/nginx/default.d/roboshop.conf
+Print "Downloading Nginx Content"
+curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>$LOG_FILE
+StatCheck $?
 
-echo -e "\e[36m Starting Nginx \e[0m"
-systemctl restart nginx
-systemctl enable nginx
+Print "Cleanup Old Nginx Content"
+rm -rf /usr/share/nginx/html/* &>>$LOG_FILE
+StatCheck $?
+
+cd /usr/share/nginx/html/
+
+Print "Extracting Archive"
+unzip /tmp/frontend.zip &>>$LOG_FILE  && mv frontend-main/* . &>>$LOG_FILE  && mv static/* &>>$LOG_FILE .
+StatCheck $?
+
+
+Print "Update RoboShop Configuration"
+mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>$LOG_FILE
+for component in catalogue user cart shipping payment; do
+  echo -e "Updating $component in Configuration"
+  sed -i -e "/${component}/s/localhost/${component}.roboshop.internal/"  /etc/nginx/default.d/roboshop.conf
+  StatCheck $?
+done
+
+
+Print "Starting Nginx"
+systemctl restart nginx &>>$LOG_FILE  && systemctl enable nginx &>>$LOG_FILE
+StatCheck $?
