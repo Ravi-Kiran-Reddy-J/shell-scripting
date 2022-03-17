@@ -56,6 +56,7 @@ if [ -z $b ]; then
   echo b variable is empty
 fi
 
+
 ## One observation, I am using quotes for variables. And it is a best practice.
 
 if [ "$a" == "abc" ]; then
